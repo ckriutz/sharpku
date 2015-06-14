@@ -1,0 +1,11 @@
+Original code written in python by http://www.reddit.com/user/Gorgoyle
+Original code accessed from https://drive.google.com/file/d/0B8OAoNk__I69bmVsRTREMGZZQ0k/view?usp=sharing
+
+Sentences organized by syllable count come from come from:
+
+http://www.manythings.org/sentences/syllables/
+
+
+Sentences were originally taken from (CC by license):
+
+http://tatoeba.org/eng/
