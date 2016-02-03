@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using Newtonsoft.Json;
 
 namespace Sharpku
 {
@@ -24,11 +25,10 @@ namespace Sharpku
 
         public string GenerateHaiku()
         {
-            //_list5 = ReadListOfSentences(@"Assets\list5");
-            _list5 = ReadListOfSentences(_path + "list5");
-            _list7 = ReadListOfSentences(_path + "list7");
-            _name1 = ReadListOfSentences(_path + "name1");
-            _name2 = ReadListOfSentences(_path + "name2");
+            _list5 = DeserializeListOfJsonSentences(_path + "list5.json");
+            _list7 = DeserializeListOfJsonSentences(_path + "list7.json");
+            _name1 = DeserializeListOfJsonSentences(_path + "name1.json");
+            _name2 = DeserializeListOfJsonSentences(_path + "name2.json");
 
             var rnd = new Random();
 
@@ -47,19 +47,13 @@ namespace Sharpku
             return poem;
         }
 
-        private List<string> ReadListOfSentences(string filename)
+        private List<string> DeserializeListOfJsonSentences(string filename)
         {
-            var list = new List<string>();
-            using (var reader = new StreamReader(filename))
+            using (var file = File.OpenText(filename))
             {
-                string line;
-
-                while ((line = reader.ReadLine()) != null)
-                {
-                    list.Add(line);
-                }
+                var serializer = new JsonSerializer();
+                return (List<string>)serializer.Deserialize(file, typeof(List<string>));
             }
-            return list;
         }
     }
 }
